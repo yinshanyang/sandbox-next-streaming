@@ -1,7 +1,8 @@
 import { randomBytes } from 'crypto'
 
-export const GET = async () => {
-  const buffer = randomBytes(15 * 1024 * 1024)
+export const POST = async (req: Request) => {
+  const body = await req.json()
+  const buffer = randomBytes(+body.size * 1024 * 1024)
   const blob = new Blob([buffer])
   const stream = blob.stream()
 
